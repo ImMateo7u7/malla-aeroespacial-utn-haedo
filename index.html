@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Malla Curricular - Ing. Aeroespacial UTN Haedo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #0b1020;
+      color: #f5f5f5;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitulo {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #c5c5c5;
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .anio {
+      background: #151a2e;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px solid #242b46;
+    }
+
+    .anio h2 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .anio small {
+      color: #9ba0bc;
+      font-size: 0.8rem;
+    }
+
+    .materias {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .materia {
+      padding: 6px 8px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      border: 1px solid #262b42;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .materia span.nombre {
+      max-width: 75%;
+    }
+
+    .tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    /* Estados */
+    .aprobada {
+      background: #102818;
+      border-color: #2b5a35;
+    }
+    .aprobada .tag {
+      background: #39c16a22;
+      border-color: #39c16a;
+      color: #a4ffbf;
+    }
+
+    .cursando {
+      background: #102332;
+      border-color: #265784;
+    }
+    .cursando .tag {
+      background: #3b82f622;
+      border-color: #3b82f6;
+      color: #c3ddff;
+    }
+
+    .pendiente {
+      background: #191b28;
+      border-color: #2a3046;
+    }
+    .pendiente .tag {
+      background: #4b556322;
+      border-color: #4b5563;
+      color: #e5e7eb;
+    }
+
+    /* Leyenda */
+    .leyenda {
+      max-width: 500px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+    }
+    .leyenda-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .leyenda-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid #4b5563;
+    }
+    .leyenda-aprobada { background: #2b5a35; }
+    .leyenda-cursando { background: #265784; }
+    .leyenda-pendiente { background: #191b28; }
+  </style>
+</head>
+
+<body>
+  <h1>🛩️ Malla Curricular - Ing. Aeroespacial</h1>
+  <p class="subtitulo">
+    UTN Haedo · Plan 2023 (seguimiento personal de materias)
+  </p>
+
+  <div class="leyenda">
+    <div class="leyenda-item">
+      <div class="leyenda-color leyenda-aprobada"></div> Aprobada
+    </div>
+    <div class="leyenda-item">
+      <div class="leyenda-color leyenda-cursando"></div> En curso
+    </div>
+    <div class="leyenda-item">
+      <div class="leyenda-color leyenda-pendiente"></div> Pendiente
+    </div>
+  </div>
+
+  <main class="layout">
+    <!-- 1er Año -->
+    <section class="anio">
+      <h2>1º Año</h2>
+      <small>Fundamentos</small>
+      <div class="materias">
+        <div class="materia aprobada">
+          <span class="nombre">Sistemas de Representación en Ingeniería</span>
+          <span class="tag">Aprobada</span>
+        </div>
+        <div class="materia aprobada">
+          <span class="nombre">Álgebra y Geometría Analítica</span>
+          <span class="tag">Aprobada</span>
+        </div>
+        <div class="materia cursando">
+          <span class="nombre">Análisis Matemático I</span>
+          <span class="tag">En curso</span>
+        </div>
+        <div class="materia aprobada">
+          <span class="nombre">Física I</span>
+          <span class="tag">Aprobada</span>
+        </div>
+        <div class="materia aprobada">
+          <span class="nombre">Química General</span>
+          <span class="tag">Aprobada</span>
+        </div>
+        <div class="materia aprobada">
+          <span class="nombre">Inglés I</span>
+          <span class="tag">Aprobada</span>
+        </div>
+        <div class="materia cursando">
+          <span class="nombre">Ingeniería y Sociedad</span>
+          <span class="tag">En curso</span>
+        </div>
+        <div class="materia cursando">
+          <span class="nombre">Conocimientos Aeronáuticos y Espaciales I</span>
+          <span class="tag">En curso</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Diseño y Representación Aeroespacial</span>
+          <span class="tag">Pendiente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2º Año (ejemplo, completar bien con tu plan) -->
+    <section class="anio">
+      <h2>2º Año</h2>
+      <small>Base científica y numérica</small>
+      <div class="materias">
+        <div class="materia pendiente">
+          <span class="nombre">Análisis Matemático II</span>
+          <span class="tag">Pendiente</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Física II</span>
+          <span class="tag">Pendiente</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Termodinámica y Mecánica de Fluidos</span>
+          <span class="tag">Pendiente</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Materiales Aeroespaciales</span>
+          <span class="tag">Pendiente</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Cálculo Numérico</span>
+          <span class="tag">Pendiente</span>
+        </div>
+        <div class="materia pendiente">
+          <span class="nombre">Inglés II</span>
+          <span class="tag">Pendiente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3º Año -->
+    <section class="anio">
+      <h2>3º Año</h2>
+      <small>Núcleo aeroespacial</small>
+      <div class="materias">
+        <div class="materia pendiente">
+          <span class="nombre">(Completar con tu plan)</span>
+          <span class="tag">Pendiente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4º Año -->
+    <section class="anio">
+      <h2>4º Año</h2>
+      <small>Proyecto y diseño</small>
+      <div class="materias">
+        <div class="materia pendiente">
+          <span class="nombre">(Completar con tu plan)</span>
+          <span class="tag">Pendiente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5º Año -->
+    <section class="anio">
+      <h2>5º Año</h2>
+      <small>Integración y cierre</small>
+      <div class="materias">
+        <div class="materia pendiente">
+          <span class="nombre">Trabajo Final / Proyecto Final</span>
+          <span class="tag">Pendiente</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
