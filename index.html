@@ -71,10 +71,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: 0.15s ease;
     }
 
     .materia span.nombre {
       max-width: 75%;
+    }
+
+    .materia:not(.bloqueada) {
+      cursor: pointer;
     }
 
     .tag {
@@ -116,6 +121,13 @@
       color: #e5e7eb;
     }
 
+    /* Bloqueada por correlativas */
+    .bloqueada {
+      opacity: 0.35;
+      filter: grayscale(0.4);
+      cursor: not-allowed !important;
+    }
+
     /* Leyenda */
     .leyenda {
       max-width: 500px;
@@ -144,9 +156,9 @@
 </head>
 
 <body>
-  <h1>🛩️ Malla Curricular - Ing. Aeroespacial</h1>
+  <h1>🛠️ Malla Curricular - Ing. Aeroespacial</h1>
   <p class="subtitulo">
-    UTN Haedo · Plan 2023 (seguimiento personal de materias)
+    UTN Haedo · Plan 2023 (seguimiento interactivo de materias)
   </p>
 
   <div class="leyenda">
@@ -157,81 +169,84 @@
       <div class="leyenda-color leyenda-cursando"></div> En curso
     </div>
     <div class="leyenda-item">
-      <div class="leyenda-color leyenda-pendiente"></div> Pendiente
+      <div class="leyenda-color leyenda-pendiente"></div> Pendiente / Bloqueada
     </div>
   </div>
 
   <main class="layout">
-    <!-- 1er Año -->
+    <!-- 1º Año -->
     <section class="anio">
       <h2>1º Año</h2>
       <small>Fundamentos</small>
       <div class="materias">
-        <div class="materia aprobada">
+        <!-- Sin correlativas: data-req="" -->
+        <div class="materia aprobada" data-id="SRI" data-req="">
           <span class="nombre">Sistemas de Representación en Ingeniería</span>
           <span class="tag">Aprobada (9)</span>
         </div>
-        <div class="materia En Curso">
+        <div class="materia aprobada" data-id="ALG" data-req="">
           <span class="nombre">Álgebra y Geometría Analítica</span>
-          <span class="tag">En curso</span>
-        </div>
-        <div class="materia aprobada">
-          <span class="nombre">Análisis Matemático I</span>
           <span class="tag">Aprobada (7)</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia cursando" data-id="AMI" data-req="">
+          <span class="nombre">Análisis Matemático I</span>
+          <span class="tag">En curso</span>
+        </div>
+        <div class="materia aprobada" data-id="FIS1" data-req="">
           <span class="nombre">Física I</span>
           <span class="tag">Aprobada (8)</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia aprobada" data-id="QUI" data-req="">
           <span class="nombre">Química General</span>
-          <span class="tag">Aprobada (9)</span>
+          <span class="tag">Aprobada (10)</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia aprobada" data-id="ING1" data-req="">
           <span class="nombre">Inglés I</span>
           <span class="tag">Aprobada (6)</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia cursando" data-id="IYS" data-req="">
           <span class="nombre">Ingeniería y Sociedad</span>
-          <span class="tag">En curso (8)</span>
+          <span class="tag">En curso</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia cursando" data-id="CAE1" data-req="">
           <span class="nombre">Conocimientos Aeronáuticos y Espaciales I</span>
-          <span class="tag">Aprobada (8)</span>
+          <span class="tag">En curso</span>
         </div>
-        <div class="materia aprobada">
+        <div class="materia pendiente" data-id="DRA" data-req="">
           <span class="nombre">Diseño y Representación Aeroespacial</span>
-          <span class="tag">Aprobada (10)</span>
+          <span class="tag">Pendiente</span>
         </div>
       </div>
     </section>
 
-    <!-- 2º Año (ejemplo, completar bien con tu plan) -->
+    <!-- 2º Año -->
     <section class="anio">
       <h2>2º Año</h2>
       <small>Base científica y numérica</small>
       <div class="materias">
-        <div class="materia pendiente">
+        <!-- Ejemplo: Análisis II requiere Análisis I aprobado -->
+        <div class="materia pendiente" data-id="AMII" data-req="AMI">
           <span class="nombre">Análisis Matemático II</span>
           <span class="tag">Pendiente</span>
         </div>
-        <div class="materia pendiente">
+        <!-- Física II requiere FIS1 + AMI, por ejemplo -->
+        <div class="materia pendiente bloqueada" data-id="FIS2" data-req="FIS1,AMI">
           <span class="nombre">Física II</span>
           <span class="tag">Pendiente</span>
         </div>
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="TMF" data-req="AMI">
           <span class="nombre">Termodinámica y Mecánica de Fluidos</span>
           <span class="tag">Pendiente</span>
         </div>
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="MAT_AERO" data-req="QUI">
           <span class="nombre">Materiales Aeroespaciales</span>
           <span class="tag">Pendiente</span>
         </div>
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="CALC_NUM" data-req="AMI">
           <span class="nombre">Cálculo Numérico</span>
           <span class="tag">Pendiente</span>
         </div>
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="ING2" data-req="ING1">
           <span class="nombre">Inglés II</span>
           <span class="tag">Pendiente</span>
         </div>
@@ -243,7 +258,7 @@
       <h2>3º Año</h2>
       <small>Núcleo aeroespacial</small>
       <div class="materias">
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="AERO1" data-req="TMF,CALC_NUM">
           <span class="nombre">(Completar con tu plan)</span>
           <span class="tag">Pendiente</span>
         </div>
@@ -255,7 +270,7 @@
       <h2>4º Año</h2>
       <small>Proyecto y diseño</small>
       <div class="materias">
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="AERO2" data-req="AERO1">
           <span class="nombre">(Completar con tu plan)</span>
           <span class="tag">Pendiente</span>
         </div>
@@ -267,12 +282,87 @@
       <h2>5º Año</h2>
       <small>Integración y cierre</small>
       <div class="materias">
-        <div class="materia pendiente">
+        <div class="materia pendiente bloqueada" data-id="TFI" data-req="AERO2">
           <span class="nombre">Trabajo Final / Proyecto Final</span>
           <span class="tag">Pendiente</span>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- 🧠 Lógica interactiva -->
+  <script>
+    const materias = document.querySelectorAll(".materia");
+    let estado = JSON.parse(localStorage.getItem("mallaEstado") || "{}");
+
+    function setEstado(elem, nuevoEstado, guardar = true) {
+      elem.classList.remove("aprobada", "cursando", "pendiente");
+      elem.classList.add(nuevoEstado);
+
+      const tag = elem.querySelector(".tag");
+      if (nuevoEstado === "aprobada") tag.textContent = "Aprobada";
+      else if (nuevoEstado === "cursando") tag.textContent = "En curso";
+      else tag.textContent = "Pendiente";
+
+      if (guardar) {
+        estado[elem.dataset.id] = nuevoEstado;
+        localStorage.setItem("mallaEstado", JSON.stringify(estado));
+      }
+    }
+
+    function actualizarBloqueos() {
+      materias.forEach((m) => {
+        const reqStr = m.dataset.req || "";
+        const reqs = reqStr.split(",").map(r => r.trim()).filter(Boolean);
+
+        if (reqs.length === 0) {
+          m.classList.remove("bloqueada");
+          return;
+        }
+
+        const habilitada = reqs.every((id) => estado[id] === "aprobada");
+        if (habilitada) {
+          m.classList.remove("bloqueada");
+        } else {
+          m.classList.add("bloqueada");
+        }
+      });
+    }
+
+    function aplicarEstadoInicial() {
+      materias.forEach((m) => {
+        const id = m.dataset.id;
+        const stGuardado = estado[id];
+        if (stGuardado) {
+          setEstado(m, stGuardado, false);
+        } else {
+          // si no hay guardado, tomamos el que tenga en el HTML
+          if (m.classList.contains("aprobada")) estado[id] = "aprobada";
+          else if (m.classList.contains("cursando")) estado[id] = "cursando";
+          else estado[id] = "pendiente";
+        }
+      });
+      localStorage.setItem("mallaEstado", JSON.stringify(estado));
+      actualizarBloqueos();
+    }
+
+    materias.forEach((m) => {
+      m.addEventListener("click", () => {
+        if (m.classList.contains("bloqueada")) return;
+
+        const id = m.dataset.id;
+        const actual = estado[id] || "pendiente";
+        let siguiente;
+        if (actual === "pendiente") siguiente = "cursando";
+        else if (actual === "cursando") siguiente = "aprobada";
+        else siguiente = "pendiente";
+
+        setEstado(m, siguiente);
+        actualizarBloqueos();
+      });
+    });
+
+    aplicarEstadoInicial();
+  </script>
 </body>
 </html>
